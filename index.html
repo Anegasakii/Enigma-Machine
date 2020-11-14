@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Anegasaki / KillerFox - Enigma Machine</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<meta charset="utf-8" />
+
+</head>
+
+<body onkeydown="Enigma(event)" onkeyup="Clear()">
+	<div class = "top">
+		<div class= "wheels">
+			<div class = "wheel">
+				<button onclick="offset('left',1)"><img src="chevron-up.svg"></button>
+				<p id = "left">A</p>
+				<button onclick="offset('left',-1)"><img src="chevron-down.svg"></button>
+			</div>
+			<div class = "wheel">
+				<button onclick="offset('middle',1)"><img src="chevron-up.svg"></button>
+				<p id = "middle">A</p>
+				<button onclick="offset('middle',-1)"><img src="chevron-down.svg"></button>
+			</div>
+			<div class = "wheel">
+				<button onclick="offset('right',1)"><img src="chevron-up.svg"></button>
+				<p id = "right">A</p>
+				<button onclick="offset(`right`,-1)"><img src="chevron-down.svg"></button>
+			</div>
+		</div>
+		<div class= "lamps">
+			<div class = "row1">
+				<p id="lampQ">Q</p>
+				<p id="lampW">W</p>
+				<p id="lampE">E</p>
+				<p id="lampR">R</p>
+				<p id="lampT">T</p>
+				<p id="lampY">Y</p>
+				<p id="lampU">U</p>
+				<p id="lampI">I</p>
+				<p id="lampO">O</p>
+				<p id="lampP">P</p>
+			</div>
+			<div class = "row2">
+				<p id="lampA">A</p>
+				<p id="lampS">S</p>
+				<p id="lampD">D</p>
+				<p id="lampF">F</p>
+				<p id="lampG">G</p>
+				<p id="lampH">H</p>
+				<p id="lampJ">J</p>
+				<p id="lampK">K</p>
+				<p id="lampL">L</p>
+			</div>
+			<div class = "row3">
+				<p id="lampZ">Z</p>
+				<p id="lampX">X</p>
+				<p id="lampC">C</p>
+				<p id="lampV">V</p>
+				<p id="lampB">B</p>
+				<p id="lampN">N</p>
+				<p id="lampM">M</p>
+			</div>
+		</div>
+	</div>
+	<div class= "keyboard">
+		<div class = "row1">
+			<p id="Q">Q</p>
+			<p id="W">W</p>
+			<p id="E">E</p>
+			<p id="R">R</p>
+			<p id="T">T</p>
+			<p id="Y">Y</p>
+			<p id="U">U</p>
+			<p id="I">I</p>
+			<p id="O">O</p>
+			<p id="P">P</p>
+		</div>
+		<div class = "row2">
+			<p id="A">A</p>
+			<p id="S">S</p>
+			<p id="D">D</p>
+			<p id="F">F</p>
+			<p id="G">G</p>
+			<p id="H">H</p>
+			<p id="J">J</p>
+			<p id="K">K</p>
+			<p id="L">L</p>
+		</div>
+		<div class = "row3">
+			<p id="Z">Z</p>
+			<p id="X">X</p>
+			<p id="C">C</p>
+			<p id="V">V</p>
+			<p id="B">B</p>
+			<p id="N">N</p>
+			<p id="M">M</p>
+		</div>
+	</div>
+</body>
+<script src="code.js"></script>
+</html>
+
