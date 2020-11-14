@@ -4,11 +4,27 @@
 	--lighter: #9dc8f9;
 }
 
+@keyframes darken {
+	100% {
+		color: white;
+		background-color: var(--darker);
+		transform: scale(1.1);
+	}
+}
+
+@keyframes lighten {
+	100% {
+		color: var(--darker);
+		background-color: var(--lighter);
+	}
+}
+
 html {
 	background-color: var(--darker);
 }
 
 body {
+	border-radius: 10px;
 	width: 90%;
 	margin: auto;
 	padding: 1vw;
@@ -84,12 +100,20 @@ p {
 
 button {
 	background-color: var(--darker);
+	border-radius: 5px;
 	border-style: none;
 	margin: auto;
 	padding: auto;
 	width: 90%;
 	height: 15%;
 }
+
+button:hover {
+	animation-name: lighten;
+	animation-duration: 0.5s;
+	animation-fill-mode: forwards;
+}
+
 img {
 	height: 100%;
 	width: 100%;
@@ -102,4 +126,23 @@ img {
 
 .lamps p {
 	box-shadow: inset 0px 0px 20px var(--darker);
+}
+
+a {
+	border: none;
+	display: inline;
+	width: auto;
+	font-size: 1vw;
+	padding: 7px;
+	margin: 10px;
+	background-color: var(--main);
+	color: white;
+	border-radius: 10px;
+	text-decoration:none;
+}
+
+a:hover {
+	animation-name: darken;
+	animation-duration: 0.5s;
+	animation-fill-mode: forwards;
 }
