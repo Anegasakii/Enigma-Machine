@@ -1,76 +1,101 @@
 let keyPressed = false;
 let pressed;
 let lamp;
-let keyCount = 0;
 
-// substitution settings
-const start = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const wheel1 = "EKMFLGDQVZNTOWYHXUSPAIBRCJ";
-const wheel2 = "AJDKSIRUXBLHWTMCQGZNPYFVOE";
-const wheel3 = "BDFHJLCPRTXVZNYEIWGAKMUSQO";
+let start = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+let reflect = "YRUHQSLDPXNGOKMIEBFZCWVJAT";
 
-// starting settings
-let left = wheel1;
-let middle = wheel2;
-let right = wheel3;
+let wheel1 = {
+    sub: "EKMFLGDQVZNTOWYHXUSPAIBRCJ",
+    notch: 24
+};
 
-let offsetLeft = 0;
-let offsetMiddle = 0;
-let offsetRight = 0;
+let wheel2 = {
+    sub: "AJDKSIRUXBLHWTMCQGZNPYFVOE",
+    notch: 12
+};
 
-function overflowCheck(number, min, max){
-    if(number == min-1){
-        number = max;
-    }
-    if(number == max+1){
-        number = min;
-    }
-    return number
+let wheel3 = {
+    sub: "BDFHJLCPRTXVZNYEIWGAKMUSQO",
+    notch: 3
+};
+
+let left = {
+    name: 'left',
+    wheel: wheel1,
+    offset: 0
+};
+
+let middle = {
+    name: 'middle',
+    wheel: wheel2,
+    offset: 0
 }
 
-function offset(wheel,direction){
-    switch(wheel){
-        case "left":
-            offsetLeft += direction;
-            offsetLeft = overflowCheck(offsetLeft, 0, 25);
-            document.getElementById("left").innerHTML = start[offsetLeft];
-            break
-        case "middle":
-            offsetMiddle += direction;
-            offsetMiddle = overflowCheck(offsetMiddle, 0, 25);
-            document.getElementById("middle").innerHTML = start[offsetMiddle];
-            break
-        case "right":
-            offsetRight += direction;
-            offsetRight = overflowCheck(offsetRight, 0, 25);
-            document.getElementById("right").innerHTML = start[offsetRight];
-            break
+let right = {
+    name: 'right',
+    wheel: wheel3,
+    offset: 0
+}
+
+function overCheck(check, min, max){
+    let output = check;
+    if(check > max){
+        output = min + (check - max - 1);
     }
-    keyCount = 0;
+    if(check < min){
+        output = max + (check - min + 1);
+    }
+    if(output > max || output < min){
+        output = overCheck(output, min, max);
+    }
+    return output;
+}
+
+function offset(pos,direction){
+    pos.offset += direction;
+    pos.offset = overCheck(pos.offset, 0, 25);
+    document.getElementById(pos.name).innerHTML = start[pos.offset];
 }
 
 function rotorTick(){
-    keyCount++;
-    offsetRight = overflowCheck(++offsetRight, 0, 25);
-    console.log("Offset:",offsetRight);
-    document.getElementById("right").innerHTML = start[offsetRight];
-    if(keyCount % 26 == 0){
-        offsetMiddle = overflowCheck(++offsetMiddle, 0, 25);
-        document.getElementById("middle").innerHTML = start[offsetMiddle];
+    if(right.offset == right.wheel.notch){
+        if(middle.offset == middle.wheel.notch){
+            offset(left, 1);
+        }
+        offset(middle, 1);
     }
-    if(keyCount % 26**2 == 0){
-        offsetLeft = overflowCheck(++offsetLeft, 0, 25);
-        document.getElementById("left").innerHTML = start[offsetLeft];
+    offset(right, 1);
+}
+
+function convert(input, bridge, forwards){
+    let output;
+    if(forwards){
+        let index = start.indexOf(input);
+        if(bridge == reflect){
+            output = reflect[index];
+            return output;
+        }
+        index = overCheck(index += bridge.offset, 0, 25);
+        output = bridge.wheel.sub[index];
+        return output;
+    } else {
+        let index = bridge.wheel.sub.indexOf(input);
+        index = overCheck(index -= bridge.offset, 0, 25);
+        output = start[index];
+        return output;
     }
+}
+
+function fullConvert(input){
+    let output = convert(convert(convert(convert(convert(convert(convert(input,right,true),middle,true),left,true),reflect,true),left,false),middle,false),right,false);
+    return output;
 }
 
 function Enigma(e){
     if(keyPressed){
         return
     } else {
-        rotorTick();
-        console.log("Keystrokes:",keyCount);
-        keyPressed = true;
         
         let keynum;
 
@@ -80,16 +105,22 @@ function Enigma(e){
             keynum = e.which;
         }
         
-        let letter = String.fromCharCode(keynum);
+        const letter = String.fromCharCode(keynum);
+        if(start.indexOf(letter) == -1){
+            return
+        }
+
         console.log("Pressed:", letter);
+        keyPressed = true;
 
         pressed = document.getElementById(letter)
         pressed.classList.add("pressed");
 
-        let secret = start.indexOf(letter);
-
-
-        lamp = document.getElementById(`lamp${letter}`);
+        let secret = fullConvert(letter);
+        console.log(secret);
+        
+        rotorTick();
+        lamp = document.getElementById(`lamp${secret}`);
         lamp.classList.add("lit");
     }
 }

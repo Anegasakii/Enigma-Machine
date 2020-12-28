@@ -1,7 +1,7 @@
 :root {
 	--main: #4995fa;
-	--darker: #224aa5;
-	--lighter: #9dc8f9;
+	--darker: #2238A5;
+	--lighter: #A8CFFF;
 }
 
 @keyframes darken {
