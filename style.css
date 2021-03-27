@@ -1,8 +1,4 @@
-:root {
-	--main: #4995fa;
-	--darker: #2238A5;
-	--lighter: #A8CFFF;
-}
+@import url(https://anegasakii.github.io/base.css);
 
 @keyframes darken {
 	100% {
@@ -18,19 +14,14 @@
 		background-color: var(--lighter);
 	}
 }
-
-html {
-	background-color: var(--darker);
-}
-
+html { background-color: var(--darker); }
 body {
 	border-radius: 10px;
 	width: 90%;
-	margin: auto;
-	padding: 1vw;
+	margin: 5vh auto;
+	padding: 3vw;
 	background-color: var(--lighter);
 	font-family: sans-serif;
-	box-shadow: 0 0 10px black;
 }
 
 .keyboard, .lamps {
@@ -51,11 +42,11 @@ p {
 	border-radius: 50%;
 	color: white;
 	background-color: var(--main);
-	font-size: 1.5vw;
+	font-size: 2vw;
 	padding: 1vw;
 	margin: 0.5vw;
-	width: 1.5vw;
-	height: 1.5vw;
+	width: 2vw;
+	height: 2vw;
 	text-align: center;
 	box-shadow: 0px 5px 5px var(--darker);
 }
@@ -96,6 +87,7 @@ p {
 	border-radius: 0px;
 	margin: auto;
 	box-shadow: inset 0px 0px 10px var(--darker);
+	border-radius: 5px;
 }
 
 button {
@@ -122,17 +114,16 @@ img {
 .top {
 	display: flex;
 	flex-direction: row;
+	margin: 1vh 1vw;
 }
 
-.lamps p {
-	box-shadow: inset 0px 0px 20px var(--darker);
-}
+.lamps p { box-shadow: inset 0px 0px 20px var(--darker); }
 
 a {
 	border: none;
 	display: inline;
 	width: auto;
-	font-size: 1vw;
+	font-size: 150%;
 	padding: 7px;
 	margin: 10px;
 	background-color: var(--main);
@@ -145,4 +136,16 @@ a:hover {
 	animation-name: darken;
 	animation-duration: 0.5s;
 	animation-fill-mode: forwards;
+}
+
+@media (max-width: 1000px) {
+	p {
+		font-size: 3vw;
+		width: 3vw;
+		height: 3vw;
+	}
+	body { padding: 3vh 0; }
+	.lamps { margin-top: 2vh; }
+	.top { flex-direction: column; }
+	.nav { margin: 4vh 2vw 0; }
 }
