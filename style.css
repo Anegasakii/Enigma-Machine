@@ -1,13 +1,5 @@
 @import url(https://anegasakii.github.io/base.css);
 
-@keyframes darken {
-	100% {
-		color: white;
-		background-color: var(--darker);
-		transform: scale(1.1);
-	}
-}
-
 @keyframes lighten {
 	100% {
 		color: var(--darker);
@@ -21,7 +13,6 @@ body {
 	margin: 5vh auto;
 	padding: 3vw;
 	background-color: var(--lighter);
-	font-family: sans-serif;
 }
 
 .keyboard, .lamps {
@@ -118,25 +109,6 @@ img {
 }
 
 .lamps p { box-shadow: inset 0px 0px 20px var(--darker); }
-
-a {
-	border: none;
-	display: inline;
-	width: auto;
-	font-size: 150%;
-	padding: 7px;
-	margin: 10px;
-	background-color: var(--main);
-	color: white;
-	border-radius: 10px;
-	text-decoration:none;
-}
-
-a:hover {
-	animation-name: darken;
-	animation-duration: 0.5s;
-	animation-fill-mode: forwards;
-}
 
 @media (max-width: 1000px) {
 	p {
