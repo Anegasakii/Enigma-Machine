@@ -1,18 +1,12 @@
 @import url(https://anegasakii.github.io/base.css);
 
-@keyframes lighten {
-	100% {
-		color: var(--darker);
-		background-color: var(--lighter);
-	}
-}
 html { background-color: var(--darker); }
 body {
-	border-radius: 10px;
+	border-radius: 5px;
 	width: 90%;
-	margin: 5vh auto;
+	margin: 3vh auto;
 	padding: 3vw;
-	background-color: var(--lighter);
+	background-color: var(--darkest);
 }
 
 .keyboard, .lamps {
@@ -58,8 +52,7 @@ p {
 	display: flex;
 	flex-direction: row;
 	margin: auto;
-	box-shadow: 0px 0px 15px var(--darker);
-	border-radius: 10px;
+	background-color: var(--main);
 }
 
 .wheel {
@@ -68,8 +61,7 @@ p {
 	height: 25vh;
 	padding: 2vw;;
 	margin: 1vw;
-	background-color: var(--main);
-	border-radius: 5px;
+	background-color: var(--darker);
 }
 
 .wheel p {
@@ -77,27 +69,20 @@ p {
 	color: var(--darker);
 	border-radius: 0px;
 	margin: auto;
-	box-shadow: inset 0px 0px 10px var(--darker);
-	border-radius: 5px;
+	box-shadow: inset 0px 0px 15px var(--darker);
 }
 
 button {
-	background-color: var(--darker);
-	border-radius: 5px;
-	border-style: none;
+	border-width: 2px;
 	margin: auto;
 	padding: auto;
 	width: 90%;
 	height: 15%;
-}
-
-button:hover {
-	animation-name: lighten;
-	animation-duration: 0.5s;
-	animation-fill-mode: forwards;
+	display: block;
 }
 
 img {
+	margin: auto;
 	height: 100%;
 	width: 100%;
 }
@@ -109,6 +94,8 @@ img {
 }
 
 .lamps p { box-shadow: inset 0px 0px 20px var(--darker); }
+
+.hidden { display: none; }
 
 @media (max-width: 1000px) {
 	p {

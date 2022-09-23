@@ -134,3 +134,12 @@ function Clear(){
     lamp.classList.remove("lit");
     return
 }
+
+function keysDisplay() {
+    let keyboard = document.getElementsByClassName("keyboard")[0];
+    if(keyboard.classList.contains("hidden")){
+            keyboard.classList.remove("hidden");
+    } else {
+        keyboard.classList.add("hidden");
+    }
+}
